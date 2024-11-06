@@ -28,7 +28,7 @@ class LoginController extends Controller
             return back()->withErrors(['login' => 'Your email address is not verified. Please check your inbox.']);
         }
 
-        return redirect()->route('success');
+        return redirect()->route('home');
     } else {
         return back()->withErrors(['login' => 'Invalid email/username or password.']);
     }

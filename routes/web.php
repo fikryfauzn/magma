@@ -8,6 +8,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+
+
 
 
 
@@ -40,6 +44,9 @@ Route::middleware(['role:admin'])->group(function () {
     
     Route::get('/admin/create-admin', [AdminController::class, 'createAdminForm'])->name('create.admin');
     Route::post('/admin/create-admin', [AdminController::class, 'storeAdmin']);
+
+    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
 
 
@@ -58,8 +65,24 @@ Route::middleware('guest')->group(function () {
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::get('/reset-password/{token}/{email}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/products', [ProductController::class, 'index'])->name('catalog');
+Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
+
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('/products', [ProductController::class, 'store']);
 
+
+// Static pages for the company
+Route::view('/about', 'about')->name('about');
+Route::view('/contact', 'contact')->name('contact');
+
+// Resources routes
+Route::view('/faq', 'faq')->name('faq');
+Route::view('/guide', 'guide')->name('guide');
+Route::view('/services', 'services')->name('services');
+
+
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');

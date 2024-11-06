@@ -1,0 +1,224 @@
+/* Font-face definition for NicoMoji */
+@font-face {
+    font-family: 'Nico Moji';
+    src: url('public/fonts/NicoMoji-Regular.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #212121;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding: 20px 40px;
+    color: #212121;
+    z-index: 10;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Menu */
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 27px;
+    right: 200px;
+    left: -42.5px;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 120px;
+}
+
+/* Aligns items and applies hover effect to both links and buttons */
+.dropdown-menu a, 
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    color: #212121;
+    padding: 10px 20px;
+    text-align: left;   /* Aligns text to the left */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover, 
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;  /* Hover background for both */
+    color: #212121;              /* Ensures text color is consistent */
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block; /* Shows the menu on hover or focus */
+}
+
+.user-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin-left: 30%;
+}
+
+.logo {
+    font-size: 32px;
+    padding-top: 0.8125%;
+    font-weight: bold;
+    font-family: 'Nico Moji', cursive;
+    color: #212121;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.auth-links {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+
+.auth-links a {
+    color: #212121;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+/* Overlay Menu Styling */
+.overlay-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 32.5%;
+    transform: translateX(-50%);
+    width: 35%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.overlay-menu.active {
+    display: block;
+}
+
+.overlay-logo {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Nico Moji', cursive;
+    color: #212121;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeInContent 0.5s ease 0.3s forwards;
+}
+
+.overlay-content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    opacity: 0;
+    animation: fadeInContent 0.5s ease 0.5s forwards;
+}
+
+.menu-column {
+    text-align: left;
+}
+
+.menu-column h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 10px;
+}
+
+.menu-column a {
+    display: block;
+    color: #757575;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.menu-column a:hover {
+    color: #212121;
+}
+
+.auth-links a img {
+    width: 24px;
+    height: 24px;
+    margin-left: 15px;
+    transition: opacity 0.3s ease;
+}
+
+.auth-links a img:hover {
+    opacity: 0.7;
+}
+
+.show {
+    display: block;
+}
+
+
+
+
+
+/* Fade-in animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
