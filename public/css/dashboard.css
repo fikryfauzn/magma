@@ -1,0 +1,129 @@
+/* public/css/dashboard.css */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Kontainer Utama */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.logo h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.menu {
+    list-style-type: none;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.menu li a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.menu li a.active, .menu li a:hover {
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.logout a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Konten Utama */
+.main-content {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    padding: 8px 12px;
+    font-size: 16px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+}
+
+/* Analytics Section */
+.analytics {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.analytics h2 {
+    margin-bottom: 15px;
+}
+
+.analytics-content {
+    height: 200px; /* Sesuaikan tinggi konten analytics */
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Statistik */
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}

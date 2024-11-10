@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\TransactionController;
+
 
 
 
@@ -39,7 +41,14 @@ Route::get('/success', function () {
 })->name('success')->middleware('auth'); // Protect with 'auth' middleware to ensure only logged-in users can access it
 
 
-Route::middleware(['role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+    Route::get('/admin/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
+    Route::get('/admin/manages', [AdminController::class, 'showManages'])->name('admin.manages');
+
+    // Route::get('/api/visitor-analytics', [AnalyticsController::class, 'getVisitorData']);
+
+
     Route::get('/admin/create-mechanic', [AdminController::class, 'createMechanicForm'])->name('create.mechanic');
     Route::post('/admin/create-mechanic', [AdminController::class, 'storeMechanic']);
     

@@ -123,4 +123,13 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Email could not be sent.');
         }
     }
+
+    public function showDashboard()
+    {
+        return view('admin.dashboard');
+    }
+    public function showManages()
+    {
+        return view('admin.manages');
+    }
 }
