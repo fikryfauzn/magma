@@ -25,13 +25,24 @@ body {
 header {
     display: flex;
     align-items: center;
-    position: absolute;
+    justify-content: space-between; /* Space between logo and links */
+	position: fixed;
     width: 100%;
-    top: 0;
+    height: 80px; /* Adjust based on your header's actual height */
     padding: 20px 40px;
     color: #212121;
-    z-index: 10;
-    
+    z-index: 10; /* Ensures header stays above other elements */
+    transition: transform 0.5s ease; /* Smooth transition for hiding and showing */
+}
+
+
+/* Scroll up and down classes for toggling visibility */
+body.scroll-down header {
+    transform: translateY(-100%);
+}
+
+body.scroll-up header {
+    transform: translateY(0);
 }
 
 .dropdown {
@@ -44,7 +55,7 @@ header {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 27px;
+    top: 40px;
     right: 200px;
     left: -42.5px;
     background-color: #ffffff;
@@ -102,21 +113,29 @@ header {
 }
 
 .auth-links {
-    margin-left: auto;
     display: flex;
-    gap: 15px;
+    align-items: center; /* Center align the icons vertically */
+    gap: 25px;
+    margin-left: auto;
 }
 
 .auth-links a {
+    display: flex;
+    align-items: center; /* Center-align each link’s content */
     color: #212121;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
-.auth-links a:hover {
-    color: #555;
-    text-decoration: underline;
+.auth-links a img {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s ease;
+}
+
+.auth-links a img:hover {
+    opacity: 0.7;
 }
 
 /* Overlay Menu Styling */
@@ -142,6 +161,7 @@ header {
 }
 
 .overlay-logo {
+    display: inline-block;
     font-size: 32px;
     font-weight: bold;
     font-family: 'Nico Moji', cursive;
@@ -180,13 +200,6 @@ header {
 
 .menu-column a:hover {
     color: #212121;
-}
-
-.auth-links a img {
-    width: 24px;
-    height: 24px;
-    margin-left: 15px;
-    transition: opacity 0.3s ease;
 }
 
 .auth-links a img:hover {

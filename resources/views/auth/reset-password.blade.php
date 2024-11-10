@@ -1,35 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
-</head>
-<body>
-    <h1>Reset Password</h1>
+@extends('layouts.app')
 
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+@push('styles')
+    @vite(['resources/css/reset-password.css'])
+@endpush
 
-    <form action="{{ route('password.update') }}" method="POST">
-        @csrf
-        <input type="hidden" name="token" value="{{ $token }}">
-        <input type="hidden" name="email" value="{{ $email }}">
+@section('content')
+<div class="reset-section">
+    <div class="reset-container">
+        <h1>Reset Password</h1>
 
-        <label for="password">New Password:</label>
-        <input type="password" name="password" required><br>
+        @if($errors->any())
+            <div class="error-messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-        <label for="password_confirmation">Confirm Password:</label>
-        <input type="password" name="password_confirmation" required><br>
+        <form action="{{ route('password.update') }}" method="POST" class="reset-form">
+            @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="email" value="{{ $email }}">
 
-        <button type="submit">Reset Password</button>
-    </form>
-</body>
-</html>
+            <div class="form-group">
+                <input type="password" name="password" placeholder=" " required>
+                <label for="password">New Password</label>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password_confirmation" placeholder=" " required>
+                <label for="password_confirmation">Confirm Password</label>
+            </div>
+
+            <button type="submit" class="reset-button">Reset Password</button>
+        </form>
+    </div>
+</div>
+@endsection

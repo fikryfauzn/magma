@@ -1,28 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Register</h1>
+@extends('layouts.app')
 
-    <form action="{{ url('/register') }}" method="POST">
-        @csrf
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
+@push('styles')
+    @vite(['resources/css/register.css'])
+@endpush
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+@section('content')
+<div class="register-section">
+    <div class="register-container">
+        <h1>REGISTER</h1>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
+        @if($errors->any())
+            <div class="error-messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-        <label for="password_confirmation">Confirm Password:</label>
-        <input type="password" name="password_confirmation" required><br>
+        <form action="{{ url('/register') }}" method="POST" class="register-form">
+            @csrf
+            <div class="form-group">
+                <input type="text" name="username" placeholder=" " required>
+                <label for="username">Username</label>
+            </div>
 
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
+            <div class="form-group">
+                <input type="email" name="email" placeholder=" " required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" placeholder=" " required>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password_confirmation" placeholder=" " required>
+                <label for="password_confirmation">Confirm Password</label>
+            </div>
+
+            <button type="submit" class="register-button">REGISTER</button>
+        </form>
+        <div class="links">
+            <a href="{{ route('password.request') }}">FORGOT YOUR PASSWORD?</a>
+        </div>
+    </div>
+</div>
+@endsection

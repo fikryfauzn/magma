@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login</h1>
+@extends('layouts.app')
 
-    <!-- Check for errors and display them -->
-    @if($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+@push('styles')
+    @vite(['resources/css/login.css'])
+@endpush
+
+@section('content')
+<div class="login-section">
+    <div class="login-container">
+        <h1>SIGN IN</h1>
+
+        <!-- Status message for successful actions, like password reset email sent -->
+        @if (session('status'))
+            <div class="status-message">{{ session('status') }}</div>
+        @endif
+
+        <!-- Display errors if any -->
+        @if($errors->any())
+            <div class="error-messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ url('/login') }}" method="POST" class="login-form">
+            @csrf
+            <div class="form-group">
+                <input type="text" name="login" placeholder=" " required>
+                <label for="login">Email</label>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" placeholder=" " required>
+                <label for="password">Password</label>
+            </div>
+
+            <button type="submit" class="login-button">LOG IN</button>
+        </form>
+
+        <div class="links">
+            <a href="{{ route('password.request') }}">FORGOT YOUR PASSWORD?</a>
         </div>
-    @endif
-
-    
-
-    <form action="{{ url('/login') }}" method="POST">
-        @csrf
-        <label for="login">Email or Username:</label>
-        <input type="text" name="login" required><br>
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
-
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="{{ url('/register') }}">Register here</a></p>
-    <p><a href="{{ route('password.request') }}">Forgot your password?</a></p>
-</body>
-</html>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,139 @@
+/* Full-Screen Login Section */
+.login-section {
+    background-color: #FFFFFF;
+    color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    opacity: 0; /* Start invisible for fade-in effect */
+    animation: fadeInZoom 1s ease forwards;
+    animation-delay: 0.5s; /* Delay for smooth appearance */
+}
+
+/* Login Container Styling */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+/* Error and Status Messages */
+.status-message {
+    color: green;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.error-messages ul {
+    color: red;
+    padding: 0;
+    margin: 10px 0;
+    list-style: none;
+}
+
+/* Form Styling */
+.login-form .form-group {
+    position: relative;
+    margin-top: 30px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px 10px 10px 0; /* No left padding to align with left edge */
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333333;
+    outline: none;
+    color: #333333;
+}
+
+.login-form input::placeholder {
+    color: transparent;
+}
+
+/* Floating Label Styling */
+.login-form label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 14px;
+    color: #999999;
+    pointer-events: none;
+    transition: 0.3s ease all;
+}
+
+.login-form input:focus + label,
+.login-form input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 12px;
+    color: #333333;
+}
+
+/* Button Styling */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #333333;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #555555;
+}
+
+/* Link Container */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.links a {
+    font-size: 14px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+
+.links a:hover {
+    color: #555555;
+}
+
+/* Fade-In and Zoom Animation */
+@keyframes fadeInZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

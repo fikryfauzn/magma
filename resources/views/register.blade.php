@@ -43,7 +43,7 @@
         <input type="password" id="password_confirmation" name="password_confirmation">
     </div>
 
-    <button type="submit">Register</button>
+    <button type="submit">CCSS</button>
 </form>
 
 </body>

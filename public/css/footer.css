@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Nico Moji';
+    src: url('public/fonts/NicoMoji-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+/* Footer styles */
+.footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 81.5vh; /* Full viewport height */
+    background-color: #FFFFFF;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+    align-items: end; /* Align items to the bottom of the footer */
+    justify-items: center;
+    padding-bottom: 30px; /* Adjust as needed for spacing from bottom */
+}
+
+
+
+.footer-logo {
+    font-size: 80px;
+    margin: 0px 0px 10px 90px;
+    font-family: 'Nico Moji', cursive;
+    position: relative;
+    top: 400px;
+}
+
+.footer-auto {
+    font-weight: 800;
+    font-size: 50px;
+    margin-left: 850px;
+    position: relative;
+    top: 300px;
+    right: 0px;
+    overflow: visible; /* Prevent clipping on surrounding elements */
+    display: inline-block; /* Keeps it from affecting other elements */
+
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Align items within each footer column to the bottom */
+    gap: 5px;
+    height: 100%; /* Ensures each item spans the full height */
+}
+
+.footer-item strong {
+    font-weight: 600;
+}
+
+/* Real-time clock */
+.clock {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Media query for responsive footer layout */
+@media (max-width: 768px) {
+    .footer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
