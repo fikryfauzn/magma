@@ -8,19 +8,32 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* Layar Redup */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
         /* Popup Profil */
         .profile-popup {
             display: none;
-            position: absolute;
-            top: 70px;
-            right: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 413px;
             height: 469px;
             background-color: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 101;
         }
 
         .profile-popup-content {
@@ -65,7 +78,40 @@
         .logout-button:hover {
             background-color: #c82333;
         }
+
+        /* Popup Notifikasi */
+        .notification-popup {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+
+        .notification-popup h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .notification-popup p {
+            margin: 10px 0 0;
+            font-size: 14px;
+        }
+
+        /* Ikon Bell dan Profil */
+        .notification-icon, .profile-icon {
+            cursor: pointer;
+            font-size: 24px; /* Ukuran yang sama dengan ikon profil */
+            padding: 5px;
+        }
     </style>
+    
 </head>
 <body>
     <div class="container">
@@ -93,21 +139,30 @@
             <header class="header">
                 <input type="text" placeholder="Search" class="search-bar">
                 <div class="icons">
-                    <span class="notification-icon">🔔</span>
-                    <span class="profile-icon" onclick="toggleProfilePopup()">👤</span>
-                </div>
-
-                <!-- Popup Profil -->
-                <div id="profile-popup" class="profile-popup">
-                    <div class="profile-popup-content">
-                        <img src="{{ asset('images/profile.jpg') }}" alt="Profile Picture" class="profile-picture">
-                        <div class="profile-buttons">
-                            <button class="edit-button">Edit</button>
-                            <button class="logout-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
-                        </div>
-                    </div>
+                    <span class="notification-icon" onclick="toggleNotificationPopup(event)">🔔</span>
+                    <span class="profile-icon" onclick="toggleProfilePopup(event)">👤</span>
                 </div>
             </header>
+
+            <!-- Overlay -->
+            <div class="overlay" id="overlay" onclick="closeProfilePopup()"></div>
+
+            <!-- Popup Profil -->
+            <div id="profile-popup" class="profile-popup">
+                <div class="profile-popup-content">
+                    <img src="{{ asset('images/profile.jpg') }}" alt="Profile Picture" class="profile-picture">
+                    <div class="profile-buttons">
+                        <button class="edit-button">Edit</button>
+                        <button class="logout-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popup Notifikasi -->
+            <div id="notification-popup" class="notification-popup">
+                <h4>New Notification</h4>
+                <p>You have 3 new messages.</p>
+            </div>
 
             <!-- Section Visitor Analytics -->
             <section class="analytics">
@@ -128,18 +183,44 @@
     </div>
 
     <script>
-        // Fungsi toggle popup profil
-        function toggleProfilePopup() {
+        // Fungsi untuk membuka popup profil
+        function toggleProfilePopup(event) {
+            event.stopPropagation(); // Mencegah klik pada ikon menutup popup
             const popup = document.getElementById('profile-popup');
-            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+            const overlay = document.getElementById('overlay');
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
         }
 
-        // Menutup popup jika klik di luar area popup
-        document.addEventListener('click', function (event) {
+        // Fungsi untuk menutup popup profil
+        function closeProfilePopup() {
             const popup = document.getElementById('profile-popup');
-            const icon = document.querySelector('.profile-icon');
-            if (popup.style.display === 'block' && !popup.contains(event.target) && event.target !== icon) {
-                popup.style.display = 'none';
+            const overlay = document.getElementById('overlay');
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Fungsi untuk toggle notifikasi
+        function toggleNotificationPopup(event) {
+            event.stopPropagation(); // Mencegah klik pada ikon menutup popup
+            const notificationPopup = document.getElementById('notification-popup');
+            notificationPopup.style.display = notificationPopup.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Menutup popup saat klik di luar popup
+        window.addEventListener('click', function(event) {
+            const notificationPopup = document.getElementById('notification-popup');
+            const profilePopup = document.getElementById('profile-popup');
+            const overlay = document.getElementById('overlay');
+
+            // Menutup popup notifikasi dan profil jika klik di luar mereka
+            if (!notificationPopup.contains(event.target) && event.target !== document.querySelector('.notification-icon')) {
+                notificationPopup.style.display = 'none';
+            }
+
+            if (!profilePopup.contains(event.target) && event.target !== document.querySelector('.profile-icon')) {
+                profilePopup.style.display = 'none';
+                overlay.style.display = 'none';
             }
         });
     </script>
