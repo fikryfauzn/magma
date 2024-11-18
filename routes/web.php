@@ -11,13 +11,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\GoogleController;
-
-
-
-
+use App\Http\Controllers\TransactionController;
 
 Auth::routes(['verify' => true]);
-
 
 Route::get('/verify-email/{id}/{hash}', [VerificationController::class, 'verify'])->name('verify-email');
 Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
@@ -39,7 +35,19 @@ Route::get('/success', function () {
 })->name('success')->middleware('auth'); // Protect with 'auth' middleware to ensure only logged-in users can access it
 
 
-Route::middleware(['role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+    Route::get('/admin/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
+    Route::get('/admin/manages', [AdminController::class, 'showManages'])->name('admin.manages');
+
+    // Route::get('/api/visitor-analytics', [AnalyticsController::class, 'getVisitorData']);
+
+    // Tambahkan submenu untuk manages
+    Route::get('/admin/manage_user', [AdminController::class, 'showManageUser'])->name('admin.manage_user');
+    Route::get('/admin/manage_product', [AdminController::class, 'showManageProduct'])->name('admin.manage_product');
+    Route::get('/admin/manage_services', [AdminController::class, 'showManageServices'])->name('admin.manage_services');
+    Route::get('/admin/manage_service_booking', [AdminController::class, 'showManageServiceBooking'])->name('admin.manage_service_booking');
+
     Route::get('/admin/create-mechanic', [AdminController::class, 'createMechanicForm'])->name('create.mechanic');
     Route::post('/admin/create-mechanic', [AdminController::class, 'storeMechanic']);
     
@@ -49,8 +57,6 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
-
-
 
 // Apply the 'guest' middleware, which prevents access if the user is authenticated
 Route::middleware('guest')->group(function () {
@@ -75,7 +81,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::post('/products', [ProductController::class, 'store']);
-
 
 // Static pages for the company
 Route::view('/about', 'about')->name('about');
