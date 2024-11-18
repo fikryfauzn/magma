@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class TransactionController extends Controller
+{
+    public function index()
+    {
+        return view('admin.transaction'); // Sesuaikan dengan path view Blade Anda
+    }
+}
+
