@@ -1,0 +1,105 @@
+/* Container Styles */
+.cart-section {
+    margin: 80px auto;
+    margin-bottom: 250px;
+    position: relative;
+    max-width: 800px;
+    text-align: center;
+    top: 120px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Table Styles */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.cart-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+/* Cart Actions */
+.cart-actions-container {
+    padding: 10px;
+    text-align: right; /* Align actions to the right */
+}
+
+/* Checkout Button Styles */
+.checkout-button-container {
+    text-align: right; /* Align checkout button to the right */
+    margin-top: 20px;
+}
+
+.btn-checkout {
+    padding: 12px 25px;
+    border-radius: 5px;
+    background-color: #212121; /* Consistent color */
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-checkout:hover {
+    background-color: #555555;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #212121;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #555555;
+}
+
+.btn-update {
+    background-color: #212121;
+}
+
+.btn-update:hover {
+    background-color: #555555;
+}
+
+.btn-remove {
+    background-color: #212121;
+}
+
+.btn-remove:hover {
+    background-color: #555555;
+}
+
+/* Input Field */
+.cart-quantity-input {
+    width: 60px;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.cart-quantity-input:focus {
+    border-color: #007bff;
+}

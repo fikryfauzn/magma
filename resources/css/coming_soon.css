@@ -1,0 +1,23 @@
+/* Coming Soon Section Styles */
+.product-details-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+
+.product-details-section h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #e53935;
+}
+
+.product-details-section p {
+    font-size: 1.5rem;
+    color: #333333;
+    margin-top: 20px;
+    max-width: 600px;
+}

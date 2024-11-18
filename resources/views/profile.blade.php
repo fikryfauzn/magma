@@ -1,17 +1,22 @@
 <!-- resources/views/profile.blade.php -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+@extends('layouts.app')
 
-</head>
-<body>
-    <h1>Welcome to your profile, {{ Auth::user()->name }}!</h1>
-    <p>Email: {{ Auth::user()->email }}</p>
-    @include('partials.footer')
-</body>
-</html>
+@push('styles')
+@vite(['resources/css/profile.css'])
+@endpush
+
+@section('content')
+<div class="profile-section">
+    <h1>Welcome {{ Auth::user()->username }}!</h1>
+</div>
+@endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+@endpush
+
+@push('scripts')
+    @vite(['resources/js/profile.js'])
+@endpush
+

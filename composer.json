@@ -10,6 +10,7 @@
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
+        "midtrans/midtrans-php": "^2.6",
         "phpmailer/phpmailer": "^6.9"
     },
     "require-dev": {

@@ -1,0 +1,91 @@
+/* Container for Product Section */
+.product-section {
+    background-image: url('{{ asset('images/bg.png') }}'); /* Corrected to use Laravel's asset helper */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 50px 100px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the container in the page */
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Product Image with Animation */
+.product-image {
+    position: absolute;
+    top: 0;
+    right: -100px; /* Adjust as necessary to position the image correctly */
+    width: 950px; /* Change this to make the image smaller */
+    max-width: 100%;
+    z-index: 1;
+    opacity: 0; /* Initially set to 0 to fade in */
+    animation: fadeInRight 1.5s ease-out forwards; /* Animation added */
+}
+
+/* Product Info Container with Animation */
+.product-info {
+    background: rgba(255, 255, 255, 0.9); /* Adding a semi-transparent background for contrast */
+    padding: 20px;
+    max-width: 600px; /* Limit width to keep text neat */
+    border-radius: 10px; /* Rounded edges for the box */
+    position: relative;
+    top: 0px;
+    left: -200px; /* Adjust for better alignment */
+    z-index: 2; /* Place above the product image */
+    opacity: 0; /* Initially set to 0 to fade in */
+    animation: fadeInLeft 1.5s ease-out forwards; /* Animation added */
+}
+
+/* Header Text */
+.product-info h1 {
+    font-size: 2.2rem; /* Adjust the font size for visual hierarchy */
+    font-weight: bold;
+    margin-bottom: 15px; /* Adds spacing below the header */
+    color: #333333; /* Darker color for better contrast */
+}
+
+/* Order Button */
+.order-button {
+    display: inline-block;
+    margin-top: 20px; /* Adds space between text and button */
+    padding: 12px 25px; /* Increase padding for better touch targets */
+    background-color: #e53935; /* Red color to draw attention */
+    color: #ffffff; /* Text color */
+    border-radius: 8px; /* Rounded button edges */
+    font-weight: bold;
+    text-decoration: none; /* No underline */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.order-button:hover {
+    background-color: #d32f2f; /* Darker shade on hover */
+    color: #FFFFFF;
+    transform: scale(1.05); /* Slightly larger on hover to indicate interactivity */
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px); /* Start 50px to the right */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* End in the original position */
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px); /* Start 50px to the left */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* End in the original position */
+    }
+}

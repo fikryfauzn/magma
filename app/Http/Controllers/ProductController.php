@@ -17,6 +17,7 @@ class ProductController extends Controller
         // Return the 'catalog' view with the products data
         return view('catalog', compact('products'));
     }
+    
     // Show the form for creating a new product
     public function create()
     {
@@ -25,13 +26,26 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        // Fetch the product based on the slug
+
         $product = Product::where('slug', $slug)->firstOrFail();
-        
+
+    // Check the slug and return the specific blade file for each product
+        if ($slug === 'grove') {
+        return view('products.grove', compact('product'));
+        }
+
         // Return a view for the product
         return view('products.show', compact('product'));
     }
-    
+
+    public function showGuide()
+    {
+        $products = Product::all(); // Fetch all products
+        return view('guide', compact('products'));
+    }
+
+
+
 
     // Store a new product in the database
     public function store(Request $request)

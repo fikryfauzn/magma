@@ -32,8 +32,8 @@
             <div class="menu-column">
                 <h3><a href="{{ route('catalog') }}" style="text-decoration: none; color: inherit;">Products</a></h3>
                 <a href="{{ route('products.show', ['slug' => 'grove']) }}">Grove</a>
-                <a href="{{ route('products.show', ['slug' => 'cihuy']) }}">Cihuy</a>
-                <a href="{{ route('products.show', ['slug' => 'asoy']) }}">Asoy</a>
+                <a href="{{ route('products.show', ['slug' => 'move']) }}">Move</a>
+                <a href="{{ route('products.show', ['slug' => 'jove']) }}">Jove</a>
             </div>
             <div class="menu-column">
                 <h3>Company</h3>
