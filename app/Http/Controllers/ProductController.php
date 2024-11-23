@@ -4,76 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-
+    // Menampilkan semua produk
     public function index()
     {
-        // Fetch all products from the database
-        $products = Product::all();
+        // Ambil semua produk dari tabel
+        $products = Product::paginate(10); // Menampilkan 10 produk per halaman
 
-        // Return the 'catalog' view with the products data
-        return view('catalog', compact('products'));
+        return view('admin.manage_product', compact('products')); // Kirim data ke view
     }
-    
-    // Show the form for creating a new product
+
+    // Menampilkan form untuk membuat produk baru
     public function create()
     {
-        return view('admin.create_product');
+        return view('admin.create_product'); // Menampilkan halaman form pembuatan produk
     }
 
-    public function show($slug)
+    public function edit($id)
     {
-
-        $product = Product::where('slug', $slug)->firstOrFail();
-
-    // Check the slug and return the specific blade file for each product
-        if ($slug === 'grove') {
-        return view('products.grove', compact('product'));
-        }
-
-        // Return a view for the product
-        return view('products.show', compact('product'));
+        $product = Product::findOrFail($id); // Cari produk berdasarkan ID
+        return view('admin.edit_product', compact('product')); // Kirim data produk ke view
     }
 
-    public function showGuide()
+    public function destroy($id)
     {
-        $products = Product::all(); // Fetch all products
-        return view('guide', compact('products'));
+        $product = Product::findOrFail($id); // Cari produk berdasarkan ID
+        $product->delete(); // Hapus produk dari database
+
+        return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
     }
 
 
-
-
-    // Store a new product in the database
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'nullable|file|mimes:jpg,png,jpeg|max:2048',
-            'tracking_id' => 'nullable|integer'
-        ]);
-
-        // Handle image upload if it exists
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-        }
-
-        // Create the product in the database
-        Product::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'image' => $imagePath,
-            'tracking_id' => $request->input('tracking_id')
-        ]);
-
-        // Redirect back with a success message
-        return redirect()->route('admin.products.create')->with('success', 'Product created successfully');
-    }
 }

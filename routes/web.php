@@ -15,12 +15,9 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
-
-
-
-
-
-
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceBookingController;
 
 Auth::routes(['verify' => true]);
 
@@ -58,14 +55,48 @@ Route::get('/success', function () {
 
 
 Route::middleware(['role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+    Route::get('/admin/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
+    Route::get('/admin/manages', [AdminController::class, 'showManages'])->name('admin.manages');
+
+    // Route::get('/api/visitor-analytics', [AnalyticsController::class, 'getVisitorData']);
+
+    // Tambahkan submenu untuk manages
+    //Route::get('/admin/manage_user', [AdminController::class, 'showManageUser'])->name('admin.manage_user');
+    //Route::get('/admin/manage_product', [AdminController::class, 'showManageProduct'])->name('admin.manage_product');
+    Route::get('/admin/manage_services', [AdminController::class, 'showManageServices'])->name('admin.manage_services');
+    Route::get('/admin/manage_service_booking', [AdminController::class, 'showManageServiceBooking'])->name('admin.manage_service_booking');
+    
     Route::get('/admin/create-mechanic', [AdminController::class, 'createMechanicForm'])->name('create.mechanic');
     Route::post('/admin/create-mechanic', [AdminController::class, 'storeMechanic']);
 
     Route::get('/admin/create-admin', [AdminController::class, 'createAdminForm'])->name('create.admin');
     Route::post('/admin/create-admin', [AdminController::class, 'storeAdmin']);
 
-    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-    Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/admin/manage_product', [ProductController::class, 'index'])->name('admin.manage_product');
+
+    Route::get('/admin/manage_user', [AdminController::class, 'index'])->name('admin.manage_user');
+    Route::get('/users/{id}/edit', [AdminController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{id}', [AdminController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/admin/service_booking_details', function () {
+        return view('admin.service_booking_details');
+    })->name('admin.service_booking_details');
+
+    Route::get('/admin/manage_services', [ServiceController::class, 'index'])->name('admin.manage_services');
+    Route::get('/admin/service/{id}/edit', [ServiceController::class, 'edit'])->name('admin.service.edit');
+    Route::delete('/admin/service/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
+
+    Route::get('/admin/manage_service_booking', [ServiceBookingController::class, 'index'])->name('admin.manage_service_booking');
+    Route::get('/admin/service_booking/{id}/edit', [ServiceBookingController::class, 'edit'])->name('admin.service_booking.edit');
+    Route::delete('/admin/service_booking/{id}', [ServiceBookingController::class, 'destroy'])->name('admin.service_booking.destroy');
+
+    Route::patch('/transactions/{transaction_id}/edit', [TransactionController::class, 'update'])->name('transactions.update');
+ // Menambahkan route untuk edit
+    Route::put('transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update //new
+
+
+
 });
 
 
@@ -77,7 +108,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'registerForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
 });
-
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -153,3 +183,12 @@ Route::view('/services', 'services')->name('services');
 
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+
+Route::get('/transactions/{transaction_id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
+
+Route::delete('/transactions/{transaction_id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+
+Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+
+Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+

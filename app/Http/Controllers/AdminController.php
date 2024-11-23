@@ -123,4 +123,41 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Email could not be sent.');
         }
     }
+
+    
+    public function showDashboard()
+    {
+        return view('admin.dashboard');
+    }
+    public function showManages()
+    {
+        return view('admin.manages');
+    }
+    public function showManageUser()
+    {
+        return view('admin.manage_user');  // Menampilkan halaman manage_user.blade.php
+    }
+    public function showManageProduct()
+    {
+        return view('admin.manage_product');  // Menampilkan halaman manage_user.blade.php
+    }
+    public function showManageServices()
+    {
+        return view('admin.manage_services');  // Menampilkan halaman manage_user.blade.php
+    }
+    public function showManageServiceBooking()
+    {
+        return view('admin.manage_service_booking');  // Menampilkan halaman manage_user.blade.php
+    }
+    public function index()
+    {
+        $users = User::all(); // Mengambil semua data dari tabel users
+        return view('admin.manage_user', compact('users')); // Mengirim data ke Blade
+    }
+    public function productindex()
+    {
+        $products = Product::all(); // Mengambil semua data dari tabel products
+        return view('admin.manage-products', compact('products')); // Kirim data ke view
+    }
+
 }
