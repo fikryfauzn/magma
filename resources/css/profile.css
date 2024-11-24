@@ -1,25 +1,121 @@
-/* public/css/profile.css */
+/* Resetting some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+/* Styling the profile section similar to the welcome page */
 .profile-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    max-width: 800px;
-    height: 100vh;
-    margin-left: 375px;
-    background-color: #FFFFFF;
-    border-radius: 10px;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    font-family: 'Helvetica', sans-serif;
+}
+
+/* Styling the heading */
+.profile-section h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
-.profile-section h1 {
-    font-size: 2.5rem;
-    color: #333333;
-    margin-bottom: 20px;
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row; /* Ensure horizontal alignment */
+    align-items: center;
+    justify-content: center; /* Center buttons in the parent container */
 }
 
-.profile-section p {
-    font-size: 1.2rem;
-    color: #666666;
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px; /* Add some space between buttons */
+}
+
+
+/* Separator between buttons */
+.separator {
+    margin: 0 10px;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+/* Styling the buttons */
+.toggle-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #252525;
+    color: #fff;
+    cursor: pointer;
+    width: 225px; /* Ensure the buttons have the same width */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #4b4b4b;
+    transform: scale(1.05); /* Slightly enlarges the button on hover */
+}
+
+/* Styling the forms */
+.form-section {
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Form labels and inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 140%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Buttons inside forms */
+.btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #252525;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #4b4b4b;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #ddd;
 }

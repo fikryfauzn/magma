@@ -12,11 +12,15 @@ class Transaction extends Model
     protected $primaryKey = 'transaction_id';
     protected $fillable = [
         'user_id',
+        'product_id',
         'total_amount',
+        'quantity',
         'status',
-        'transaction_type',
         'shipping_address',
         'virtual_account_number',
+        'transaction_type',
+        'transaction_date',
+        'reference_number'
     ];
     
 
@@ -27,6 +31,6 @@ class Transaction extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'product_id');
     }
 }

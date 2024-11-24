@@ -1,0 +1,86 @@
+/* Service Listing Section */
+.services-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #FFFFFF; /* Matches global background */
+    color: #212121; /* Matches global text color */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    min-height: 100vh; /* Ensures the section fills the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically if short */
+}
+
+.services-section h1 {
+    font-size: 28px; /* Match global font size */
+    color: #333333; /* Use darker text for titles */
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Table Styling */
+.services-section table {
+    width: 100%;
+    border-collapse: collapse; /* Cleaner table appearance */
+    margin-top: 20px;
+}
+
+.services-section table thead {
+    background-color: #212121; /* Matches global button background */
+    color: #FFFFFF; /* White text for contrast */
+}
+.services-section table thead th {
+    color: #FFFFFF; /* White text for contrast */
+}
+
+.services-section table th,
+.services-section table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd; /* Subtle borders for cells */
+}
+
+.services-section table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating row colors for readability */
+}
+
+.services-section table tbody tr:hover {
+    background-color: #e9ecef; /* Highlight rows on hover */
+}
+
+.services-section table th {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.services-section table td {
+    font-size: 15px;
+    color: #555555; /* Softer color for table content */
+    line-height: 1.5;
+}
+
+/* Clickable Links */
+.services-section table td a.service-link {
+    color: #252525; /* Blue color for links */
+    font-weight: bold; /* Makes the text stand out */
+    text-decoration: underline;
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth color and hover effects */
+}
+
+.services-section table td a.service-link:hover {
+    color: #414141; /* Darker blue for hover effect */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* No Services Available Text */
+.services-section p {
+    font-size: 16px;
+    color: #777777;
+    text-align: center;
+    margin-top: 20px;
+}

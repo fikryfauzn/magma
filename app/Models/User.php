@@ -23,7 +23,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',  // Ensure this is here
         'email',
         'password',
-        'role'
+        'role',
+        'name',
+        'telephone_number',
     ];
 
         // Set the primary key field
@@ -57,4 +59,5 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+    
 }

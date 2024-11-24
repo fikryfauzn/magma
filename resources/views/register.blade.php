@@ -28,6 +28,11 @@
         <input type="text" id="username" name="username" value="{{ old('username') }}">
     </div>
 
+    <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+</div>
+
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="{{ old('email') }}">

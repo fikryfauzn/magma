@@ -1,0 +1,98 @@
+/* Bookings Section Container */
+.bookings-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 125px;
+    background-color: #FFFFFF; /* Matches global background */
+    color: #212121; /* Matches global text color */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle depth */
+    font-family: 'Poppins', sans-serif;
+}
+
+.bookings-section h1 {
+    font-size: 28px; /* Matches global headings */
+    color: #333333; /* Darker for emphasis */
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Success Alert */
+.alert.alert-success {
+    background-color: #d4edda; /* Soft green background */
+    color: #155724; /* Green text */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Table Styling */
+.bookings-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #FFFFFF;
+}
+
+.bookings-section table thead {
+    background-color: #212121; /* Dark header for contrast */
+    color: #FFFFFF; /* White text */
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.bookings-section table th,
+.bookings-section table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd; /* Light gray borders */
+}
+
+.bookings-section table th {
+    padding: 15px;
+    color: #fff;
+    text-align: left;
+    border: 1px solid #ddd; /* Light gray borders */
+}
+
+.bookings-section table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating rows */
+}
+
+.bookings-section table tbody tr:hover {
+    background-color: #e9ecef; /* Row highlight on hover */
+}
+
+/* Status Styling */
+.bookings-section table td:nth-child(5) { /* Status column */
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.bookings-section .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #212121; /* Matches "info" button color */
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.bookings-section .btn:hover {
+    background-color: #414141; /* Darker blue on hover */
+}
+
+/* Empty State Message */
+.bookings-section p {
+    font-size: 16px;
+    color: #777777;
+    text-align: center;
+    margin-top: 20px;
+}

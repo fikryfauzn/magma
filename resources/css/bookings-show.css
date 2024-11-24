@@ -1,0 +1,102 @@
+/* Booking Details Section */
+.booking-details-section {
+    max-width: 800px;
+    margin: 50px auto;
+    margin-top: 175px;
+    padding: 30px;
+    background-color: #FFFFFF; /* Matches global background */
+    color: #212121; /* Matches global text color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Heading Styling */
+.booking-details-section h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #212121; /* Adds emphasis */
+    padding-bottom: 10px;
+}
+
+/* Booking Info Styling */
+.booking-info {
+    margin-bottom: 30px;
+}
+
+.booking-info p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #555555;
+}
+
+.booking-info p strong {
+    color: #333333; /* Emphasize bold text */
+}
+
+/* Additional Services Section */
+.additional-services {
+    margin-top: 20px;
+}
+
+.additional-services h3 {
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd; /* Subtle separation */
+    padding-bottom: 5px;
+}
+
+.additional-services ul {
+    list-style: disc inside;
+    color: #555555;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.additional-services ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.additional-services p {
+    font-size: 16px;
+    color: #777777;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #212121; /* Matches global button style */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555555; /* Slightly lighter hover effect */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .booking-details-section {
+        padding: 20px;
+    }
+
+    .booking-info p,
+    .additional-services ul li {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+}
