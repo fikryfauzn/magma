@@ -84,20 +84,18 @@
                             <td>{{ \Carbon\Carbon::parse($transaction->transaction_date)->format('d/m/Y') }}</td> <!-- Format tanggal -->
                             <td>{{ $transaction->reference_number }}</td>
                             <td class="action-buttons">
-
-                            <form action="{{ route('transactions.update', $transaction->id) }}" method="POST">
+                            
+                            <form action="{{ route('transactions.edit', $transaction->transaction_id) }}" method="GET" style="display:inline;">
                                 @csrf
-                                @method('PATCH') <!-- This ensures the form uses the PATCH method -->
-    
-                                <!-- Form fields go here -->
-                                <button type="submit">Update Transaction</button>
+                                <button type="submit" class="update-button">Update</button>
                             </form>
 
                                 <form action="{{ route('transactions.destroy', $transaction->transaction_id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="cancel-button">Cancel</button>
-                                </form>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-button" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+
                             </td>
                         </tr>
                     @endforeach
@@ -157,5 +155,70 @@
             }
         });
     </script>
+
+<style>
+        /* Styling for Create button */
+        .create-button-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .create-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .create-button:hover {
+            background-color: #218838;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .action-buttons button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .update-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .update-button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
 </body>
 </html>

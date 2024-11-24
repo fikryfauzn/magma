@@ -58,6 +58,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
     Route::get('/admin/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
     Route::get('/admin/manages', [AdminController::class, 'showManages'])->name('admin.manages');
+    
 
     // Route::get('/api/visitor-analytics', [AnalyticsController::class, 'getVisitorData']);
 
@@ -73,7 +74,10 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/create-admin', [AdminController::class, 'createAdminForm'])->name('create.admin');
     Route::post('/admin/create-admin', [AdminController::class, 'storeAdmin']);
 
-    Route::get('/admin/manage_product', [ProductController::class, 'index'])->name('admin.manage_product');
+    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');//
+    Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store'); //
+
+    Route::get('/admin/manage_product', [ProductController::class, 'showproductindex'])->name('admin.manage_product');
 
     Route::get('/admin/manage_user', [AdminController::class, 'index'])->name('admin.manage_user');
     Route::get('/users/{id}/edit', [AdminController::class, 'edit'])->name('users.edit');
@@ -91,9 +95,34 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/service_booking/{id}/edit', [ServiceBookingController::class, 'edit'])->name('admin.service_booking.edit');
     Route::delete('/admin/service_booking/{id}', [ServiceBookingController::class, 'destroy'])->name('admin.service_booking.destroy');
 
-    Route::patch('/transactions/{transaction_id}/edit', [TransactionController::class, 'update'])->name('transactions.update');
+    // Route untuk menampilkan halaman edit transaksi
+    Route::get('admin/transactions/{id}/edit', [TransactionController::class, 'edit'])->name('admin.transactions.edit');
+
+    // Route untuk mengupdate transaksi setelah form disubmit
+    Route::put('admin/transactions/{id}', [TransactionController::class, 'update'])->name('admin.transactions.update');
+    // Route untuk menampilkan halaman daftar transaksi
+    Route::get('admin/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
+
+    // Route untuk menampilkan halaman daftar user
+    Route::get('/admin/manage_user', [UserController::class, 'index'])->name('admin.manage_user');
+
+    // Route untuk menampilkan halaman edit user
+    Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+
+    // Route untuk mengupdate user setelah form disubmit
+    Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
+
+    // Route untuk menghapus user
+    Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    //Route::get('/admin/manage_product', [ProductController::class, 'showproductindex'])->name('admin.manage_product');
+    Route::get('/admin/manage_product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
+    Route::put('/admin/manage_product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
+    Route::delete('/admin/manage_product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+
+    //Route::patch('/transactions/{transactionId}/edit', [TransactionController::class, 'update'])->name('transactions.update');
  // Menambahkan route untuk edit
-    Route::put('transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update //new
+    //Route::put('/transactions/{transactionId}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update //new
 
 
 
@@ -184,11 +213,15 @@ Route::view('/services', 'services')->name('services');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 
-Route::get('/transactions/{transaction_id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
+//Route::get('/transactions/{transaction_id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
 
-Route::delete('/transactions/{transaction_id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+//Route::delete('/transactions/{transaction_id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
 
 Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
 
 Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
+Route::get('transactions', [TransactionController::class, 'index'])->name('transactions');
+Route::get('transactions/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit'); // Menambahkan route untuk edit
+Route::put('transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update
+Route::delete('transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');

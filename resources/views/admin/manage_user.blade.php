@@ -97,11 +97,11 @@
             </td>
             <td>{{ $user->created_at->format('m/d/Y') }}</td>
             <td class="action-buttons">
-                <form action="{{ route('users.edit', $user->user_id) }}" method="POST" style="display:inline;">
+                <form action="{{ route('users.edit', $user->user_id) }}" method="GET" style="display:inline;">
                     @csrf
-                    @method('UPDATE')
                     <button type="submit" class="update-button" onclick="return confirm('Are you sure?')">Update</button>
                 </form>
+                
                 <form action="{{ route('users.destroy', $user->user_id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')

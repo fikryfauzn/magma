@@ -97,9 +97,8 @@
             <td>{{ $product->tracking_id }}</td>
             <td class="action-buttons">
                 <!-- <a href="{{ route('admin.products.edit', $product->product_id) }}" class="update-button">Update</a> -->
-                <form action="{{ route('admin.products.edit', $product->product_id) }}" method="POST" style="display:inline;">
+                <form action="{{ route('admin.products.edit', $product->product_id) }}" method="GET" style="display:inline;">
                     @csrf
-                    @method('UPDATE')
                     <button type="update" class="update-button" onclick="return confirm('Are you sure?')">update</button>
                 </form>
                 <form action="{{ route('admin.products.destroy', $product->product_id) }}" method="POST" style="display:inline;">

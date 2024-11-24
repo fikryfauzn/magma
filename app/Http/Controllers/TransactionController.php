@@ -1,51 +1,67 @@
 <?php
-
-// app/Http/Controllers/TransactionController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        // Ambil data transaksi dengan pagination dan relasi dengan ServiceBooking
-        $transactions = Transaction::with('serviceBooking') // Pastikan relasi serviceBooking dimuat
-            ->paginate(10); // Menampilkan 10 transaksi per halaman
-
-        // Kirim data transaksi ke view
+        $transactions = Transaction::paginate(10);
         return view('admin.transaction', compact('transactions'));
     }
 
+    // Method untuk menampilkan halaman edit transaksi
     public function edit($id)
     {
-        $transaction = Transaction::findOrFail($id);
-        return view('admin.edit_transaction', compact('transaction'));
+    // Ambil data transaksi berdasarkan ID
+    $transaction = Transaction::findOrFail($id);
+
+    // Kembalikan view dengan data transaksi
+    return view('admin.edit.edittransaction', compact('transaction'));
     }
 
-    public function update(Request $request, $transaction_id)
-    {
-        $transaction = Transaction::findOrFail($transaction_id);
+    // Method untuk mengupdate transaksi
+    public function update(Request $request, $id)
+{
+    // Temukan transaksi berdasarkan ID
+    $transaction = Transaction::find($id);
 
-        // Validate the request data
-        $validated = $request->validate([
-            'status' => 'required|string',
-            // Add other fields you want to update here
-        ]);
-
-        // Update the transaction with validated data
-        $transaction->update($validated);
-
-        // Redirect or return a response
-        return redirect()->route('transactions.index')->with('success', 'Transaction updated successfully');
+    // Jika transaksi tidak ditemukan, redirect ke halaman daftar transaksi dengan pesan error
+    if (!$transaction) {
+        return redirect()->route('admin.transactions')->with('error', 'Transaction not found.');
     }
+
+    // Update data transaksi
+    $transaction->product_id = $request->product_id;
+    $transaction->user_id = $request->user_id;
+    $transaction->total_amount = $request->total_amount;
+    // Tambahkan field lain sesuai kebutuhan
+
+    // Simpan perubahan
+    $transaction->save();
+
+    // Redirect kembali ke halaman daftar transaksi setelah berhasil update
+    return redirect()->route('admin.transactions')->with('success', 'Transaction updated successfully');
+}
+
+
 
     public function destroy($id)
     {
-        $transaction = Transaction::findOrFail($id);
-        $transaction->delete();
+    try {
+            // Cari transaksi berdasarkan ID
+            $transaction = Transaction::findOrFail($id);
 
-        return redirect()->route('admin.transactions')->with('success', 'Transaction deleted successfully.');
+            // Hapus transaksi
+            $transaction->delete();
+
+            // Redirect kembali ke halaman admin transaksi tanpa ID
+            return redirect()->route('admin.transactions')->with('success', 'Transaction deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.transactions')->with('error', 'Failed to delete transaction.');
+        }
     }
+
 }
