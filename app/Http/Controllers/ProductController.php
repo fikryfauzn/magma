@@ -81,7 +81,6 @@ class ProductController extends Controller
         // Update data produk
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->stock = $request->stock;
         // Tambahkan validasi dan field lainnya sesuai kebutuhan
 
         // Simpan perubahan

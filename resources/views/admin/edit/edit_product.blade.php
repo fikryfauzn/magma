@@ -22,11 +22,6 @@
             <input type="text" id="price" name="price" value="{{ $product->price }}" required>
         </div>
         
-        <div>
-            <label for="stock">Stock</label>
-            <input type="text" id="stock" name="stock" value="{{ $product->stock }}" required>
-        </div>
-        
         <button type="submit">Update Product</button>
     </form>
 </body>

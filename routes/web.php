@@ -120,6 +120,13 @@ Route::middleware(['role:admin'])->group(function () {
     Route::put('/admin/manage_product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
     Route::delete('/admin/manage_product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
 
+    Route::get('/admin/manage_services/{id}/edit', [ServiceController::class, 'edit'])->name('admin.services.edit');
+    Route::put('/admin/manage_services/{id}', [ServiceController::class, 'update'])->name('admin.services.update');
+    Route::delete('/admin/manage_services/{service_id}', [ServiceController::class, 'destroy'])->name('admin.manage_services.destroy');
+
+
+    
+
     //Route::patch('/transactions/{transactionId}/edit', [TransactionController::class, 'update'])->name('transactions.update');
  // Menambahkan route untuk edit
     //Route::put('/transactions/{transactionId}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update //new
