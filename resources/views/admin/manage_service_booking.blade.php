@@ -68,42 +68,49 @@
             </div>
 
             <table>
-                <thead>
-                    <tr>
-                        <th><input type="checkbox"></th>
-                        <th>Booking Service ID</th>
-                        <th>Booking ID</th>
-                        <th>Service ID</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($bookings as $booking)
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>{{ $booking->booking_service_id }}</td>
-                            <td>{{ $booking->booking_id }}</td>
-                            <td>{{ $booking->service_id }}</td>
-                            <td>{{ $booking->created_at }}</td>
-                            <td>{{ $booking->updated_at }}</td>
-                            <td class="action-buttons">
-                                <button 
-                                    class="update-button" 
-                                    onclick="window.location.href='{{ route('admin.service_booking.edit', $booking->booking_service_id) }}'">
-                                    Update
-                                </button>
-                                <form action="{{ route('admin.service_booking.destroy', $booking->booking_service_id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this booking?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th>Booking Service ID</th>
+            <th>Booking ID</th>
+            <th>Service ID</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($bookings as $booking)
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>{{ $booking->booking_service_id }}</td>
+                <td>{{ $booking->booking_id }}</td>
+                <td>{{ $booking->service_id }}</td>
+                <td>{{ $booking->created_at }}</td>
+                <td>{{ $booking->updated_at }}</td>
+                <td class="action-buttons">
+                    <button 
+                        class="update-button" 
+                        onclick="window.location.href='{{ route('admin.service_booking.edit', $booking->booking_service_id) }}'">
+                        Update
+                    </button>
+                    <form action="{{ route('admin.service_booking.destroy', $booking->booking_service_id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this booking?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+<!-- Navigasi pagination -->
+<div class="pagination">
+    {{ $bookings->links() }} <!-- Menampilkan pagination -->
+</div>
+
+
 
 <div>
     {{ $bookings->links() }} <!-- Untuk pagination -->

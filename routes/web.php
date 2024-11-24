@@ -124,14 +124,17 @@ Route::middleware(['role:admin'])->group(function () {
     Route::put('/admin/manage_services/{id}', [ServiceController::class, 'update'])->name('admin.services.update');
     Route::delete('/admin/manage_services/{service_id}', [ServiceController::class, 'destroy'])->name('admin.manage_services.destroy');
 
+    Route::get('/manage_service_booking', [ServiceBookingController::class, 'index'])->name('admin.manage_service_booking');
+    Route::get('/service_booking/edit/{booking_id}', [ServiceBookingController::class, 'edit'])->name('admin.service_booking.edit');
+    Route::put('/service_booking/update/{booking_id}', [ServiceBookingController::class, 'update'])->name('admin.service_booking.update');
+    Route::delete('/service_booking/destroy/{booking_id}', [ServiceBookingController::class, 'destroy'])->name('admin.service_booking.destroy');
+
 
     
 
     //Route::patch('/transactions/{transactionId}/edit', [TransactionController::class, 'update'])->name('transactions.update');
  // Menambahkan route untuk edit
     //Route::put('/transactions/{transactionId}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update //new
-
-
 
 });
 
