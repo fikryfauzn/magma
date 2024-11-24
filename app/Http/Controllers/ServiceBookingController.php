@@ -7,22 +7,20 @@ use Illuminate\Http\Request;
 
 class ServiceBookingController extends Controller
 {
-    // Menampilkan daftar booking
     public function index()
-    {
-        $bookings = Booking::paginate(10); // Ambil data booking dengan pagination
-        return view('admin.manage_service_booking', compact('bookings'));
-    }
+{
+    // Gunakan paginasi untuk mengambil data booking
+    $bookings = Booking::paginate(10); // Atau jumlah halaman yang diinginkan
+    return view('admin.manage_service_booking', compact('bookings')); // Kirim ke view
+}
 
-    // Menampilkan halaman edit untuk booking layanan
     public function edit($booking_id)
     {
-        $booking = Booking::findOrFail($booking_id); // Temukan booking berdasarkan ID
-        $services = Service::all(); // Ambil semua layanan
-        return view('admin.edit_service_booking', compact('booking', 'services'));
+        $booking = Booking::findOrFail($booking_id); // Temukan booking berdasarkan booking_id
+        $services = Service::all(); // Ambil semua data layanan untuk ditampilkan pada dropdown
+        return view('admin.edit_service_booking', compact('booking', 'services')); // Arahkan ke halaman edit
     }
 
-    // Update data booking
     public function update(Request $request, $booking_id)
     {
         // Validasi input
@@ -32,22 +30,25 @@ class ServiceBookingController extends Controller
             'status' => 'required|string',
         ]);
 
-        $booking = Booking::findOrFail($booking_id); // Temukan booking berdasarkan ID
-        $booking->service_id = $request->service_id; // Update service_id
-        $booking->date_scheduled = $request->date_scheduled; // Update date_scheduled
-        $booking->status = $request->status; // Update status
-        $booking->save(); // Simpan perubahan
+        // Temukan booking berdasarkan booking_id
+        $booking = Booking::findOrFail($booking_id);
 
-        // Redirect ke halaman manage service booking dengan pesan sukses
-        return redirect()->route('admin.manage_service_booking')->with('success', 'Booking service updated successfully!');
+        // Perbarui data booking
+        $booking->update([
+            'service_id' => $request->service_id,
+            'date_scheduled' => $request->date_scheduled,
+            'status' => $request->status,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('admin.manage_service_booking')->with('success', 'Service booking updated successfully!');
     }
 
-    // Menghapus booking service
     public function destroy($booking_id)
     {
-        $booking = Booking::findOrFail($booking_id);
+        $booking = Booking::findOrFail($booking_id); // Temukan booking berdasarkan booking_id
         $booking->delete(); // Hapus booking
 
-        return redirect()->route('admin.manage_service_booking')->with('success', 'Booking deleted successfully!');
+        return redirect()->route('admin.manage_service_booking')->with('success', 'Service booking deleted successfully!');
     }
 }
