@@ -3,6 +3,7 @@
     background-color: #FFFFFF;
     color: #212121;
     display: flex;
+    margin-top: 50px;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */

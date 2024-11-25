@@ -19,6 +19,20 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceBookingController;
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ServiceBookingController;
+
+
+
+
+
+
+
+
+
 Auth::routes(['verify' => true]);
 
 
@@ -165,6 +179,8 @@ Route::get('/products/move', [ProductController::class, 'show'])->name('products
 
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/store-service', [CartController::class, 'storeService'])->name('cart.storeService');
+Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 
 
@@ -172,13 +188,16 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::middleware('auth')->get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
 // Edit profile (you'll need a form for this)
-Route::middleware('auth')->get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
-// Order history page
-Route::middleware('auth')->get('/orders', [OrderController::class, 'index'])->name('orders.index');
+// Profile routes
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.updateProfile');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.updateProfile');
+Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
-// View specific order details
-Route::middleware('auth')->get('/orders/{transactionId}', [OrderController::class, 'show'])->name('orders.show');
+
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 
 // Logout route (default provided by Laravel Auth)
 Route::post('/logout', [Auth\LoginController::class, 'logout'])->name('logout');
@@ -216,10 +235,9 @@ Route::get('/products/move', function () {
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');
 
+
 // Resources routes
 Route::view('/faq', 'faq')->name('faq');
-Route::view('/services', 'services')->name('services');
-
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 
@@ -235,3 +253,12 @@ Route::get('transactions', [TransactionController::class, 'index'])->name('trans
 Route::get('transactions/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit'); // Menambahkan route untuk edit
 Route::put('transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update'); // Untuk update
 Route::delete('transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+
+Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
+Route::get('/services/{id}', [ServicesController::class, 'show'])->name('services.show');
+
+// Bookings
+Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');

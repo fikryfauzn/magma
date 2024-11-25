@@ -1,8 +1,12 @@
 <?php
-namespace App\Http\Controllers;
-
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
@@ -64,4 +68,10 @@ class TransactionController extends Controller
         }
     }
 
+}
+        $user = Auth::user();
+        $transactions = Transaction::where('user_id', $user->user_id)->get();
+        
+        return view('transactions.index', compact('transactions'));
+    }
 }

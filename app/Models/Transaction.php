@@ -30,6 +30,16 @@ class Transaction extends Model
         'payment_method',
         'reference_number',
         'transaction_type',
+
+        'product_id',
+        'total_amount',
+        'quantity',
+        'status',
+        'shipping_address',
+        'virtual_account_number',
+        'transaction_type',
+        'transaction_date',
+        'reference_number'
     ];
 
     // Relasi dengan model User
@@ -41,7 +51,7 @@ class Transaction extends Model
     // Relasi dengan model Product
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'product_id');
     }
 
     // Relasi dengan model ServiceBooking (jika ada)

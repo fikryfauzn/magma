@@ -1,0 +1,47 @@
+/* Service Details Section */
+.service-details-section {
+    max-width: 800px;
+    position: relative;
+    margin: 50px auto; /* Center align */
+    margin-top: 200px;
+    padding: 20px;
+    background-color: #FFFFFF; /* Matches global background */
+    color: #212121; /* Matches global text color */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: 'Poppins', sans-serif;
+}
+
+.service-details-section h1 {
+    font-size: 26px;
+    color: #333333;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.service-details-section p {
+    font-size: 16px;
+    color: #555555;
+    margin: 10px 0;
+}
+
+.service-details-section p strong {
+    color: #333333; /* Make bold text stand out */
+}
+
+.service-details-section .btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #212121; /* Matches global button style */
+    color: #FFFFFF;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.service-details-section .btn:hover {
+    background-color: #333333; /* Darker button on hover */
+}

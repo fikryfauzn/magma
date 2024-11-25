@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('styles')
-    @vite(['resources/css/register.css'])
+@vite(['resources/css/register.css'])
 @endpush
 
 @section('content')
@@ -10,13 +10,13 @@
         <h1>REGISTER</h1>
 
         @if($errors->any())
-            <div class="error-messages">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="error-messages">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
         <form action="{{ url('/register') }}" method="POST" class="register-form">
@@ -27,8 +27,18 @@
             </div>
 
             <div class="form-group">
+                <input type="text" id="name" name="name" placeholder=" "required>
+                <label for="name">Name</label>
+            </div>
+
+            <div class="form-group">
                 <input type="email" name="email" placeholder=" " required>
                 <label for="email">Email</label>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="telephone_number" placeholder=" " value="{{ old('telephone_number') }}">
+                <label for="telephone_number">Phone Number</label>
             </div>
 
             <div class="form-group">

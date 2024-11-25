@@ -33,6 +33,8 @@ class RegisterController extends Controller
                 'regex:/[@$!%*?&]/',  // Special character
                 'confirmed'
             ],
+            'name' => 'required|string|max:255',
+            'telephone_number' => 'required|string|max:15',
             'role' => 'customer',  // Assign 'customer' role by default
         ], [
             'password.regex' => 'Password must contain at least one uppercase letter, one number, and one special character.'
@@ -43,6 +45,8 @@ class RegisterController extends Controller
             'username' => $validatedData['username'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'name' => $validatedData['name'],
+            'telephone_number' => $validatedData['telephone_number'],
             'role' => 'customer',
         ]);
 
