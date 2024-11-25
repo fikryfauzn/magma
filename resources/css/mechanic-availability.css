@@ -1,0 +1,29 @@
+.availability-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.availability-section h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.booking-item {
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.booking-item p {
+    margin: 5px 0;
+}
+
+.schedule-button {
+    margin-top: 10px;
+}

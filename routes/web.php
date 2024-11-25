@@ -20,6 +20,8 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ServiceBookingController;
+use App\Http\Controllers\MechanicController;
+
 
 
 
@@ -75,6 +77,15 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
+
+Route::middleware(['auth', 'role:mechanic'])->group(function () {
+    Route::get('/mechanic/availability', [MechanicController::class, 'showAvailability'])->name('mechanic.availability');
+    Route::post('/mechanic/claim/{bookingId}', [MechanicController::class, 'claimBooking'])->name('mechanic.claim');
+    Route::post('/mechanic/update-schedule/{bookingId}', [MechanicController::class, 'updateSchedule'])->name('mechanic.updateSchedule');
+});
+
+
+
 
 
 // Apply the 'guest' middleware, which prevents access if the user is authenticated
